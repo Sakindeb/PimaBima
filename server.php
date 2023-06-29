@@ -4,19 +4,17 @@ session_start();
 // initializing variables
 $username = "";
 $email    = "";
-$illness  = "";
+
 $errors = array(); 
 
 // connect to the database
-$db = mysqli_connect('localhost', 'root', '', 'project');
+$db = mysqli_connect('localhost', 'root', '', 'legal_savannah');
 
 // REGISTER USER
 if (isset($_POST['reg_user'])) {
   // receive all input values from the form
   $username = mysqli_real_escape_string($db, $_POST['username']);
   $email = mysqli_real_escape_string($db, $_POST['email']);
-  // receive the illnesses input value from the form
-  $illnesses = mysqli_real_escape_string($db, $_POST['illness']);
   $password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
   $password_2 = mysqli_real_escape_string($db, $_POST['password_2']);
 
@@ -47,16 +45,17 @@ if (isset($_POST['reg_user'])) {
 
   // Finally, register user if there are no errors in the form
   if (count($errors) == 0) {
-    $password = md5($password_1); // encrypt the password before saving in the database
+  	$password = md5($password_1);//encrypt the password before saving in the database
 
-    $query = "INSERT INTO users (username, email, password, illnesses) 
-              VALUES('$username', '$email', '$password', '$illnesses')";
-    mysqli_query($db, $query);
-    $_SESSION['username'] = $username;
-    $_SESSION['success'] = "You are now logged in";
-    header('location: index.php');
+  	$query = "INSERT INTO users (username, email, pword) 
+  			  VALUES('$username', '$email', '$password')";
+  	mysqli_query($db, $query);
+  	$_SESSION['username'] = $username;
+  	$_SESSION['success'] = "You are now logged in";
+  	header('location: user.php');
   }
 }
+
 // LOGIN USER
 if (isset($_POST['login_user'])) {
   $username = mysqli_real_escape_string($db, $_POST['username']);

@@ -367,17 +367,27 @@
      
       <div class="container">
         <div class="form-container">
-          <h2>Sign Up</h2>
-          <form id="signup-form"method="post" action="register.php">
-  	        <?php include('errors.php'); ?>
-            <input type="text" name="username" placeholder="Name" value="<?php echo $username; ?>"><br>
-            <input type="number" name="email" placeholder="Email" value="<?php echo $email; ?>"><br>
-            <input type="number" name="illness" placeholder="Illness" value="<?php echo $illness; ?>"><br>
-            
-            <input type="password" name="password_1" placeholder="Password" required>
-            <input type="password" name="password_2" placeholder="Confirm Password" required>
-            <button type="submit">Sign Up</button>
-          </form>
+          
+          <form id="signin-form" action="register.php" method="POST">
+    <h2>Sign In</h2>
+    
+    <label for="name">Name</label>
+    <input type="text" name="username" value="<?php echo $username; ?>">
+    
+    <label for="email">Email</label>
+    <input type="email" name="email" value="<?php echo $email; ?>">
+    
+    <label for="password">Password</label>
+    <input type="password" name="password_1">
+    
+    <label for="confirm_password">Confirm Password</label>
+    <input type="password" name="password_2">
+    
+    <button type="submit" class="btn" name="reg_user">Register</button>
+    <p>
+  		Already a member? <a href="login.php">Sign in</a>
+  	</p>
+  </form>
           <div class="link-container">
             <a href="packages.html" target="_blank">Get insured</a>
           </div>
